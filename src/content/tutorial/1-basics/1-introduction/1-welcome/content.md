@@ -1,38 +1,53 @@
 ---
 type: lesson
-title: Welcome to TutorialKit
-focus: /counter.js
+title: React Quick Start
+focus: /src/App.tsx
+template: react-template
 ---
 
-# Welcome to TutorialKit
+# React quick start
 
-Hey there, and welcome to TutorialKit 👋!
+This quick start walks you through the basics of transforming and delivering an image from Cloudinary in a React environment.
 
-To kick things off, we have prepared a small demo lesson for you, where we'll dive into the concept of event handling in JavaScript. Our task is to resuscitate a lifeless counter app by introducing the crucial element of interactivity: **event listeners**.
+## Prerequisites
 
-Let's look at the preview on the right for a moment and try to click on the button that says `counter is 0`. We'll notice that it doesn't work.
+**To perform this quick start, you'll need:**
 
-In the code for `counter.js`, which you can find on the right, we have a `setupCounter` function responsible for initializing our counter app. However, a crucial component is missing: an event listener for the button.
+* A Cloudinary account. If you don't have one yet, you can quickly [register for free](https://cloudinary.com/users/register_free).
+* Your product environment credentials. You can find your [credentials](https://cloudinary.com/documentation/how_to_integrate_cloudinary#account_details) on the [API Keys](https://console.cloudinary.com/settings/api-keys) page of the Cloudinary Console Settings. 
+  * To use your **API environment variable**, copy the provided format and replace the `<your_api_key>` and `<your_api_secret>` placeholders with the actual values found on the page. Your cloud name will already be correctly included in the format.
 
-Event listeners are essential in web development as they enable our applications to respond to user actions. In this case, we need to listen for clicks on the button to increment the counter.
+## Set up and configure the SDK
 
-To address this, we'll call the `addEventListener` to attach a `click` event listener to the button element. When a click is detected, we'll execute a callback function that increments the counter and updates the `innerHTML` accordingly.
+### Install the packages
 
-```ts add={9}
-export function setupCounter(element) {
-  let counter = 0;
+Install the required packages using the NPM package manager:
 
-  const setCounter = (count) => {
-    counter = count;
-    element.innerHTML = `count is ${counter}`;
-  };
-
-  element.addEventListener('click', () => setCounter(counter + 1));
-
-  setCounter(0);
-}
+```
+npm i @cloudinary/url-gen @cloudinary/react
 ```
 
-This gives you a sneak peak of the TutorialKit experience, demonstrating what it's capable of.
+Note that these packages are already installed for the purposes of this tutorial. 
 
-Happy writing!
+### Configure Cloudinary
+
+Import `Cloudinary` from `@cloudinary/url-gen` in `App.tsx`:
+
+```ts add={2}
+import './App.css'
+import { Cloudinary } from "@cloudinary/url-gen";
+```
+
+To configure a Cloudinary instance, copy and paste this code into the `App` function, changing `demo` to your cloud name:
+
+```ts add={4-8}
+function App() {
+
+  // Create a Cloudinary instance and set your cloud name.
+  const cld = new Cloudinary({
+    cloud: {
+      cloudName: 'demo'
+    }
+  });
+
+```

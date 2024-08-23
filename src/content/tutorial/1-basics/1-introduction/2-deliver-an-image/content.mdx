@@ -1,0 +1,44 @@
+---
+type: lesson
+title: Deliver an image
+focus: /src/App.tsx
+template: react-template
+---
+
+# Deliver an image from Cloudinary
+
+In the React SDK, you can use the `AdvancedImage` component to render an image on your website.
+
+Start by importing `AdvancedImage` from `@cloudinary/react`:
+
+```ts add={3}
+import './App.css'
+import { Cloudinary } from "@cloudinary/url-gen";
+import { AdvancedImage } from '@cloudinary/react';
+```
+
+Instantiate a CloudinaryImage object for the image with the public ID, `docs/models`:
+
+```ts add={7}
+  const cld = new Cloudinary({
+    cloud: {
+      cloudName: 'demo'
+    }
+  });
+
+  const myImage = cld.image('docs/models'); 
+```
+
+Use the `AdvancedImage` component to deliver the image from Cloudinary to your website:
+
+```ts add={5}
+  return (
+    <>
+      <h1>React Quick Start</h1>
+      <div>
+        <AdvancedImage cldImg={myImage} crossorigin="anonymous"/>
+      </div>
+    </>
+  )
+
+```

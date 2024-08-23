@@ -1,0 +1,27 @@
+---
+type: lesson
+title: Transform an image
+focus: /src/App.tsx
+template: react-template
+---
+
+# Transform an image
+
+Let's resize the image to make it fit better on the page. Use the `fill` crop to specify a width and height of 250 pixels and fill this area with as much of the original image as possible.
+
+Start by importing `fill` from `@cloudinary/url-gen/actions/resize`:
+
+```ts add={4}
+import './App.css'
+import { AdvancedImage } from '@cloudinary/react';
+import { Cloudinary } from "@cloudinary/url-gen";
+import { fill } from "@cloudinary/url-gen/actions/resize";
+```
+
+Then, use the `resize` action on the image:
+
+```ts add={3}
+  const myImage = cld.image('docs/models'); 
+
+  myImage.resize(fill().width(250).height(250));
+```
