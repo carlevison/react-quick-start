@@ -3,7 +3,7 @@ import './App.css'
 
 function App() {
 
-    
+  // Create a Cloudinary instance and set your cloud name.   
 
   return (
     <>

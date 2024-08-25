@@ -5,6 +5,7 @@ import { fill } from "@cloudinary/url-gen/actions/resize";
 
 function App() {
 
+  // Create a Cloudinary instance and set your cloud name.  
   const cld = new Cloudinary({
     cloud: {
       cloudName: 'demo'
